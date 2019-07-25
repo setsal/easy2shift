@@ -1,16 +1,19 @@
 <template>
   <div class="app-container">
     <MonthSelector :month="month" :onChange="onChangeMonth" />
+    <Calendar :month="month" />
   </div>
 </template>
 
 <script>
 import MonthSelector from '@/components/MonthSelector'
+import Calendar from '@/components/Calendar'
 import moment from 'moment'
 
 export default {
   components: {
-    MonthSelector
+    MonthSelector,
+    Calendar
   },
   data() {
     return {
