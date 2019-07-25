@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
-    <MonthSelector />
+    <MonthSelector :month="month" :onChange="onChangeMonth" />
   </div>
 </template>
 
 <script>
 import MonthSelector from '@/components/MonthSelector'
+import moment from 'moment'
 
 export default {
   components: {
@@ -22,7 +23,8 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      }
+      },
+      month: moment().add(1, 'M')
     }
   },
   methods: {
@@ -34,6 +36,9 @@ export default {
         message: 'cancel!',
         type: 'warning'
       })
+    },
+    onChangeMonth(value) {
+      this.month = value
     }
   }
 }
