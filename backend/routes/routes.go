@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 
+	"../auth"
 	"../controllers"
 	"github.com/gorilla/mux"
 )
@@ -20,6 +21,8 @@ var routes []Route
 func init() {
 	register("POST", "/user/register", controllers.Register, nil)
 	register("POST", "/user/login", controllers.Login, nil)
+	register("GET", "/user/info", controllers.UserInfo, auth.TokenMiddleware)
+	register("POST", "/user/logout", controllers.Logout, auth.TokenMiddleware)
 }
 
 func NewRouter() *mux.Router {

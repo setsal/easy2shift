@@ -47,6 +47,19 @@ export default [
     }
   },
 
+  // user register
+  {
+    url: '/user/register',
+    type: 'post',
+    response: config => {
+      const { username } = config.body
+      return {
+        code: 20000,
+        msg: username + " 註冊成功~"
+      }
+    }
+  },
+
   // get user info
   {
     url: '/user/info\.*',

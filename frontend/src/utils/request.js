@@ -19,7 +19,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      config.headers['authorization'] = getToken()
     }
     return config
   },
@@ -52,6 +52,15 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
+      console.log(res)
+      // Validate or other errors ( e.g. User exist )
+      if ( res.code === 42200 ) {
+        Message({
+          message: res.msg || 'Warning',
+          type: 'warning',
+          duration: 5 * 1000
+        })
+      }
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {

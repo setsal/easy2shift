@@ -8,3 +8,8 @@ type User struct {
 type JwtToken struct {
 	Token string `json:"token"`
 }
+
+type UserInfo struct {
+	Roles string `json:"roles"`
+	Name  string `json:"name"`
+}
