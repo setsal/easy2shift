@@ -44,6 +44,9 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		hasher.Write([]byte(user.Password))
 		user.Password = hex.EncodeToString(hasher.Sum(nil))
 
+		//  change roles if you want
+		user.Roles = []string{"editor"}
+
 		// Insert to database
 		err = models.Insert(db, collection, user)
 		if err != nil {
@@ -115,14 +118,19 @@ func UserInfo(w http.ResponseWriter, r *http.Request) {
 		return []byte("secret"), nil
 	})
 
-	var result models.User
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
-		result.UserName = claims["username"].(string)
 
-		// success
-		helper.ResponseWithJson(w, http.StatusOK,
-			helper.Response{Code: 20000, Msg: "取得用戶資訊0 -0~", Data: models.UserInfo{Roles: "admin", Name: "admin"}})
-		return
+		var result models.User
+		err := models.FindOne(db, collection, bson.M{"username": claims["username"].(string)}, nil, &result)
+		if err != nil {
+			helper.ResponseWithJson(w, http.StatusInternalServerError,
+				helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
+		} else {
+			//success
+			helper.ResponseWithJson(w, http.StatusOK,
+				helper.Response{Code: 20000, Msg: "取得用戶資訊0 -0~", Data: models.UserInfo{Roles: result.Roles, Name: result.UserName}})
+			return
+		}
 
 	} else {
 		helper.ResponseWithJson(w, http.StatusInternalServerError,

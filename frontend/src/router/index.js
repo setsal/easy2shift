@@ -62,11 +62,14 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/info',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: '個人', icon: 'example' },
+    redirect: '/info/table',
+    name: '管理',
+    meta: { 
+      title: '個人', 
+      icon: 'example'
+    },
     children: [
       {
         path: 'table',
@@ -103,59 +106,24 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/nested',
+    path: '/admin',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    redirect: '/admin/shift',
+    name: 'Admin',
     meta: {
-      title: 'Nested',
-      icon: 'nested'
+      title: 'Admin',
+      icon: 'lock',
+      roles: ['admin', 'editor'] 
     },
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: 'shift',
+        component: () => import('@/views/admin/info/index'),
+        name: '部長排班',
+        meta: {
+          title: '部長排班',
+          roles: ['admin'] 
+        }
       }
     ]
   },

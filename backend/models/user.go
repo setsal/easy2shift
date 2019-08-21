@@ -1,8 +1,9 @@
 package models
 
 type User struct {
-	UserName string `bson:"username" json:"username"`
-	Password string `bson:"password" json:"password"`
+	UserName string   `bson:"username" json:"username"`
+	Password string   `bson:"password" json:"password"`
+	Roles    []string `bson:"roles" json:"roles"`
 }
 
 type JwtToken struct {
@@ -10,6 +11,6 @@ type JwtToken struct {
 }
 
 type UserInfo struct {
-	Roles string `json:"roles"`
-	Name  string `json:"name"`
+	Roles []string `json:"roles"`
+	Name  string   `json:"name"`
 }

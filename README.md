@@ -2,7 +2,7 @@
 
 Personal practice with vue 
 
-backend is golang, alse practice too :|
+backend is golang, also practice too :|
 
 ## Getting Start
 
@@ -13,7 +13,7 @@ cd backend && go run app.go
 
 backend service will listen on `localhost:3000`
 
-### fronted 
+### frontend 
 ```bash
 # clone and enter the project
 git clone && cd frontend
@@ -32,13 +32,17 @@ This will automatically open http://localhost:8000
 ## TODO
 ```
 Frontend:
-- [✓] Calendar datePicker
-- [✓] Authenticate with Backend
-- [x] Personal Page 
+- [✓] Authenticate with Backend and Permission Roles
+- [x] Schedule Page
+    - Calendar Datepicker
+    - Schedule Form
+- [x] Personal Schedule List Page 
 - [x] Admin Page 
+    - Schedule Manage Page
+
 
 Backend:
 - [✓] JWT Authenticate
-- [x] User Permission Role
+- [✓] User Permission Role
 - [x] Swift Manage Algorithm
 ```
