@@ -1,4 +1,4 @@
-import { login, register, logout, getInfo } from '@/api/user'
+import { login, register, logout, getInfo, userShift } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -88,6 +88,19 @@ const actions = {
         removeToken()
         resetRouter()
         resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // shift schedule
+  shift({ commit }, shiftInfo) {
+    const { time, activeDays, desc } = shiftInfo
+    return new Promise((resolve, reject) => {
+      userShift({ time: time, days: activeDays, desc: desc }).then(response => {
+        const { data } = response
+        resolve(data)
       }).catch(error => {
         reject(error)
       })

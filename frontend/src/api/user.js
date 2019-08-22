@@ -30,3 +30,12 @@ export function logout() {
     method: 'post'
   })
 }
+
+
+export function userShift(data) {
+  return request({
+    url: '/user/shift',
+    method: 'post',
+    data
+  })
+}
