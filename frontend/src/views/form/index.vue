@@ -90,7 +90,6 @@ export default {
       let currDate = new Date()
       currDate.setMonth(currDate.getMonth() + 1, 0 )
       let startDate = currDate.getTime()
-      // console.log(currDate.getMonth())
       currDate.setMonth(currDate.getMonth() + 2, 0 )
       let endDate = currDate.getTime()
       return time.getTime() < startDate || time.getTime() > endDate || time.getDay() === 6 || time.getDay() === 0

@@ -124,7 +124,16 @@ export const asyncRoutes = [
           title: '部長排班',
           roles: ['admin'] 
         }
-      }
+      },
+      {
+        path: 'manage',
+        component: () => import('@/views/admin/manage/index'),
+        name: 'Manage',
+        meta: {
+          title: '開放排班月份',
+          roles: ['admin'] 
+        }
+      },
     ]
   },
 

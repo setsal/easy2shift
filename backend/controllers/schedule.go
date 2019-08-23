@@ -49,17 +49,29 @@ func CreateUserSchedule(w http.ResponseWriter, r *http.Request) {
 		var result models.Schedule
 		result, err := dao.FindScheduleByMonth(data.Month)
 		if err != nil {
-			print(err.Error())
+			// don't have month collection to insert
+			helper.ResponseWithJson(w, http.StatusOK,
+				helper.Response{Code: 20000, Msg: "沒開放填寫喔> <"})
+			return
 		}
 
 		// get record
 		var record models.Record = result.List[claims["username"].(string)]
 		if len(record.Days) == 0 {
 			// create new record for user
-			print("no record")
+			record.Days = data.Days
+			record.Description = data.Description
+			if err := dao.UpdateUserRecord(data.Month, claims["username"].(string), record); err != nil {
+				helper.ResponseWithJson(w, http.StatusInternalServerError, err.Error())
+				return
+			} else {
+				helper.ResponseWithJson(w, http.StatusOK,
+					helper.Response{Code: 20000, Msg: "update success"})
+				return
+			}
+
 		} else {
 			// overwrite the exist value
-			var record models.Record
 			record.Days = data.Days
 			record.Description = data.Description
 			if err := dao.UpdateUserRecord(data.Month, claims["username"].(string), record); err != nil {
@@ -76,24 +88,4 @@ func CreateUserSchedule(w http.ResponseWriter, r *http.Request) {
 			helper.Response{Code: http.StatusInternalServerError, Msg: "internal error"})
 		return
 	}
-
-	// var schedule models.Schedule
-	// var record models.Record
-
-	// record.Days = data.Days
-	// record.Description = data.Description
-
-	// schedule.Id = bson.NewObjectId()
-	// schedule.Month = data.Time
-	// test := map[string]models.Record{
-	// 	"admin": record,
-	// }
-	// schedule.List = test
-	// fmt.Println(reflect.TypeOf(schedule.List))
-
-	// if err := dao.InsertSchedule(schedule); err != nil {
-	// 	helper.ResponseWithJson(w, http.StatusInternalServerError, err.Error())
-	// 	return
-	// }
-	helper.ResponseWithJson(w, http.StatusCreated, "create success")
 }

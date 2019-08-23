@@ -24,6 +24,7 @@ func init() {
 	register("GET", "/user/info", controllers.UserInfo, auth.TokenMiddleware)
 	register("POST", "/user/logout", controllers.Logout, auth.TokenMiddleware)
 	register("POST", "/user/shift", controllers.CreateUserSchedule, nil)
+	register("POST", "/admin/month", controllers.SetMonth, nil)
 }
 
 func NewRouter() *mux.Router {

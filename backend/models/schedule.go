@@ -1,13 +1,10 @@
 package models
 
 import (
-	"fmt"
-
 	"github.com/globalsign/mgo/bson"
 )
 
 type Schedule struct {
-	Id    bson.ObjectId     `bson:"_id" json:"id"`
 	Month string            `bson:"month" json:"month"`
 	List  map[string]Record `bson:"record" json:"record"`
 }
@@ -39,7 +36,11 @@ func (m *Schedule) FindScheduleByMonth(month string) (Schedule, error) {
 }
 
 func (m *Schedule) UpdateUserRecord(month string, user string, record Record) error {
-	fmt.Println(record)
 	data := bson.M{"$set": bson.M{"record." + user: record}}
+	return Update(db, collection, bson.M{"month": month}, data)
+}
+
+func (m *Schedule) InsertUserRecord(month string, user string, record Record) error {
+	data := bson.M{"$push": bson.M{"record." + user: record}}
 	return Update(db, collection, bson.M{"month": month}, data)
 }
