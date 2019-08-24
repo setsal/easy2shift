@@ -64,7 +64,7 @@ export const constantRoutes = [
   {
     path: '/info',
     component: Layout,
-    redirect: '/info/table',
+    redirect: '/info/schedule',
     name: '管理',
     meta: { 
       title: '個人', 
@@ -72,9 +72,9 @@ export const constantRoutes = [
     },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
+        path: 'schedule',
+        name: 'Schedule',
+        component: () => import('@/views/schedule/index'),
         meta: { title: '當月班表', icon: 'table' }
       },
       {
