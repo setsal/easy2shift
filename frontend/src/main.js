@@ -28,10 +28,12 @@ if (process.env.NODE_ENV === 'production') {
   mockXHR()
 }
 
+
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
+
 
 new Vue({
   el: '#app',
@@ -39,3 +41,7 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+import moment from 'moment'
+Object.defineProperty(Vue.prototype, '$moment', { value: moment })
+

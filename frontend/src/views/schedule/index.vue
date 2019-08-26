@@ -1,12 +1,16 @@
 <template>
   <div class="app-container">
-    Schedule Page!
+    <CalendarApp />
   </div>
 </template>
 
 <script>
+import CalendarApp from '@/components/Calendar/CalendarApp.vue'
 
 export default {
+  components: {
+    CalendarApp
+  },
   filters: {
     statusFilter(status) {
       const statusMap = {

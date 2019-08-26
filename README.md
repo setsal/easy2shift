@@ -37,7 +37,7 @@ Frontend:
     - Calendar Datepicker
     - Schedule Form
 - [x] Personal Schedule List Page 
-- [x] Admin Page 
+- [✓] Admin Page 
     - Schedule Manage Page
 
 
