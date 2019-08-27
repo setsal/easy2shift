@@ -1,10 +1,8 @@
 <template>
   <div class="ds-week">
-    <!-- <template v-for="(day, i) in days"> -->
-
-    <Day />
-
-    <!-- </template> -->
+    <template v-for="(day, i) in days">
+    <Day :key="i" :day="day"/>
+  </template>
   </div>
 </template>
 <script>
@@ -15,7 +13,12 @@ export default {
   components: {
     Day
   },
-  props: {},
+  props: {
+    days: {
+      required: true,
+      type: Array
+    }
+  },
 
   methods: {}
 };

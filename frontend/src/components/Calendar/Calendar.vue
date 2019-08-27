@@ -1,7 +1,7 @@
 <template>
   <div class="ds-calendar">
     <div class="ds-month-view">
-      <WeekViews class="ds-expand" />
+      <WeekViews :month="month" class="ds-expand" />
     </div>
   </div>
 </template>
@@ -13,6 +13,15 @@ export default {
   name: 'Calendar',
   components: {
     WeekViews
+  },
+  data() {
+    return {
+      month: ''
+    }
+  },
+  created() {
+    this.month = this.$moment().add(1, 'M')
+    console.log('Initial Calendar')
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="ds-day">
     <div>
-      <a class="ds-dom"></a>
+      <a class="ds-dom">{{ dayOfMonth }}</a>
       <!-- <span class="ds-first-day" v-if="showMonth">
         {{ month }}
       </span>-->
@@ -19,9 +19,17 @@
 export default {
   name: "Day",
 
-  props: {},
+  props: {
+    day: {
+      required: true
+    }
+  },
 
-  computed: {},
+  computed: {
+    dayOfMonth() {
+      return this.day.format('D');
+    }
+  },
 
   methods: {}
 };

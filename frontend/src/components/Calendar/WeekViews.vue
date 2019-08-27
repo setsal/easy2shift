@@ -8,7 +8,11 @@
             {{ weekday }}
       </div>
     </div>
-    <DayRow />
+    <DayRow  
+      v-for="i in rows" 
+      :key="i"
+      :days="daysAtRow( i, 7 )"
+    />
   </div>
 </template>
 
@@ -26,9 +30,23 @@ export default {
       default() {
         return ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
       }
+    },
+    month: {
+      required: true
     }
   },
-  methods: {}
+  computed: {
+    rows() {
+      return Math.floor(this.month.daysInMonth()/7)
+    }
+  },
+  methods: {
+    daysAtRow(row, rowSize) {
+      var startWeek = this.month.startOf('month').week()
+      var days = Array(7).fill(0).map((n, i) => this.$moment().week(startWeek+(row - 1)).startOf('week').clone().add(n + i, 'day'))
+      return days
+    }
+  }
 };
 </script>
 

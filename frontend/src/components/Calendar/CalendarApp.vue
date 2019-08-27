@@ -1,6 +1,6 @@
 <template>
   <div class="ds-expand ds-calendar-app">
-    <el-container>
+    <!-- <el-container>
       <el-header style="border-bottom: #e0e0e0 1px solid;">
         <el-row type="flex" class="ds-app-calendar-toolbar">
           <el-col :span="4">Calendar</el-col>
@@ -26,11 +26,13 @@
         </el-row>
       </el-header>
       <el-main class="ds-calendar-container">
-        <div class="ds-expand">
-          <Calendar />
-        </div>
       </el-main>
-    </el-container>
+    </el-container> -->
+    <div class="ds-expand">
+      <div class="ds-calendar-container">
+          <Calendar />
+      </div>
+    </div>
   </div>
 </template>
 
