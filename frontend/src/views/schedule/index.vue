@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container schedule" style="">
     <CalendarApp />
   </div>
 </template>
@@ -37,3 +37,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.schedule {
+  display: flex;
+  min-height: calc(100vh - 50px);
+}
+</style>

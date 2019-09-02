@@ -9,16 +9,21 @@
 
     <!-- //event must be here -->
     <!-- <template v-for="(event, i) in visibleEvents"> -->
-    <!-- <ds-calendar-event
-    ></ds-calendar-event>-->
+    <CalendarEvent
+    ></CalendarEvent>
     <!-- </template> -->
   </div>
 </template>
 
 <script>
+import CalendarEvent from '@/components/Calendar/CalendarEvent.vue'
+
+
 export default {
   name: "Day",
-
+  components: {
+    CalendarEvent
+  },
   props: {
     day: {
       required: true
@@ -40,6 +45,7 @@ export default {
   flex: 1;
   width: 0;
   border-right: #e0e0e0 1px solid;
+  border-left: #e0e0e0 1px solid;
   border-bottom: #e0e0e0 1px solid;
   padding: 4px;
   overflow: hidden;
